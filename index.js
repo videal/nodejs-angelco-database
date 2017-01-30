@@ -3,6 +3,7 @@ const configurations = require('./configurations.js');
 const company = require('./controllers/company.js')(mongoose);
 const downloadTask = require('./controllers/downloadTask.js')(mongoose);
 const taskCompany = require('./controllers/taskCompany.js')(mongoose);
+mongoose.Promise = global.Promise;
 mongoose.connect(`${configurations.connectionString}`);
 
 const db = mongoose.connection;
