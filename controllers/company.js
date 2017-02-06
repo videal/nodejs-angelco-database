@@ -113,7 +113,7 @@ module.exports = mongoose => {
         GetCompaniesByArray: data => {
            return new Promise((resolve, reject) => {
                 companySchema.find({
-                    'id': { $in: data}
+                    'id': { $in: data }
                 }, (error, documents) => {
                     if (error != undefined) {
                         reject(error);
