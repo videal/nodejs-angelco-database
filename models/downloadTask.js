@@ -1,4 +1,4 @@
-module.exports = function(mongoose) {
+module.exports = function (mongoose) {
     var downloadTaskSchema = mongoose.Schema({
         filters: {
             type: Array,

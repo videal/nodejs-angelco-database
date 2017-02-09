@@ -31,8 +31,8 @@ module.exports = mongoose => {
             return new Promise((resolve, reject) => {
                 var date = Date.now();
                 companySchema.findOneAndUpdate({
-                        "name": models.name
-                    }, {
+                    "name": models.name
+                }, {
                         "$set": {
                             "founders": models.founders,
                             "dateModified": date
@@ -51,10 +51,10 @@ module.exports = mongoose => {
             return new Promise((resolve, reject) => {
                 var date = Date.now();
                 companySchema.findOneAndUpdate({}, {
-                        $set: {
-                            'dateModified': date
-                        }
-                    }, {
+                    $set: {
+                        'dateModified': date
+                    }
+                }, {
                         upsert: false,
                         sort: {
                             'dateModified': 1
@@ -111,7 +111,7 @@ module.exports = mongoose => {
             });
         },
         GetCompaniesByArray: data => {
-           return new Promise((resolve, reject) => {
+            return new Promise((resolve, reject) => {
                 companySchema.find({
                     'id': { $in: data }
                 }, (error, documents) => {
@@ -120,7 +120,7 @@ module.exports = mongoose => {
                     }
                     resolve(documents);
                 });
-            }); 
+            });
         }
     };
 };

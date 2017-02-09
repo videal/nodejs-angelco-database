@@ -28,8 +28,8 @@ module.exports = mongoose => {
             return new Promise((resolve, reject) => {
                 var date = Date.now();
                 taskCompanySchema.findOneAndUpdate({
-                        companyId: null
-                    }, {
+                    companyId: null
+                }, {
                         $set: {
                             'dateModified': date
                         }
@@ -52,46 +52,46 @@ module.exports = mongoose => {
                 taskCompanySchema.update({
                     companyNumericId: companyNumericId
                 }, {
-                    companyId: companyId
-                }, {}, (error, document) => {
-                    if (error != undefined) {
-                        reject(error);
-                    }
-                    resolve(document);
-                });
+                        companyId: companyId
+                    }, {}, (error, document) => {
+                        if (error != undefined) {
+                            reject(error);
+                        }
+                        resolve(document);
+                    });
             });
         },
         GetCountsById: taskId => {
             return new Promise((resolve, reject) => {
                 var result = {};
                 Promise.all([
-                        new Promise((resolve, reject) => {
-                            taskCompanySchema.count({
-                                taskId: taskId
-                            }, (error, count) => {
+                    new Promise((resolve, reject) => {
+                        taskCompanySchema.count({
+                            taskId: taskId
+                        }, (error, count) => {
+                            if (error != undefined) {
+                                reject(error);
+                            }
+                            result.all = count;
+                            resolve();
+                        });
+                    }),
+                    new Promise((resolve, reject) => {
+                        taskCompanySchema.count({
+                            taskId: taskId,
+                            companyId: {
+                                $exists: true
+                            }
+                        },
+                            (error, count) => {
                                 if (error != undefined) {
                                     reject(error);
                                 }
-                                result.all = count;
+                                result.withCompanyId = count;
                                 resolve();
                             });
-                        }),
-                        new Promise((resolve, reject) => {
-                            taskCompanySchema.count({
-                                    taskId: taskId,
-                                    companyId: {
-                                        $exists: true
-                                    }
-                                },
-                                (error, count) => {
-                                    if (error != undefined) {
-                                        reject(error);
-                                    }
-                                    result.withCompanyId = count;
-                                    resolve();
-                                });
-                        })
-                    ])
+                    })
+                ])
                     .then(() => {
                         resolve(result);
                     });
@@ -102,16 +102,16 @@ module.exports = mongoose => {
                 taskCompanySchema.find({
                     taskId: taskId
                 },
-                'companyNumericId -_id', function (error, documents) {
-                    if (error != undefined) {
-                        reject(error);
-                    }
-                    var result = [];
-                    for(var i = 0; i < documents.length; i++) {
-                        result.push(documents[i].companyNumericId);
-                    }
-                    resolve(result);
-                });
+                    'companyNumericId -_id', function (error, documents) {
+                        if (error != undefined) {
+                            reject(error);
+                        }
+                        var result = [];
+                        for (var i = 0; i < documents.length; i++) {
+                            result.push(documents[i].companyNumericId);
+                        }
+                        resolve(result);
+                    });
             });
         }
     };

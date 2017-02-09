@@ -26,10 +26,10 @@ module.exports = mongoose => {
             return new Promise((resolve, reject) => {
                 var date = Date.now();
                 downloadTaskSchema.findOneAndUpdate({}, {
-                        $set: {
-                            'dateModified': date
-                        }
-                    }, {
+                    $set: {
+                        'dateModified': date
+                    }
+                }, {
                         upsert: false,
                         sort: {
                             'dateModified': 1

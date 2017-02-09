@@ -1,4 +1,4 @@
-module.exports = function(mongoose) {
+module.exports = function (mongoose) {
     var taskCompanySchema = mongoose.Schema({
         companyId: {
             type: String
