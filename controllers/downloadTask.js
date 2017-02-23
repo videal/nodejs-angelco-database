@@ -3,21 +3,31 @@ module.exports = mongoose => {
     return {
         Save: model => {
             return new Promise((resolve, reject) => {
-                var downloadTask = downloadTaskSchema({
-                    filters: model.filters
-                });
-                downloadTask.save((error, document) => {
-                    if (error != undefined) {
-                        if (error.code == 11000) {
-                            resolve();
-                        } else {
-                            reject(error);
-                        }
+                var filters = model.filters;
+                downloadTaskSchema.findOne({ filters: filters }, (error, document) => {
+                    if (error) {
+                        reject(error);
                     }
-                    if (undefined != document) {
+                    if (document) {
                         resolve(document);
                     } else {
-                        resolve(true);
+                        var downloadTask = downloadTaskSchema({
+                            filters: model.filters
+                        });
+                        downloadTask.save((error, document) => {
+                            if (error != undefined) {
+                                if (error.code == 11000) {
+                                    resolve();
+                                } else {
+                                    reject(error);
+                                }
+                            }
+                            if (undefined != document) {
+                                resolve(document);
+                            } else {
+                                resolve(true);
+                            }
+                        });
                     }
                 });
             });
