@@ -5,6 +5,7 @@ module.exports = mongoose => {
             return new Promise((resolve, reject) => {
                 var filters = model.filters;
                 downloadTaskSchema.findOne({ filters: filters }, (error, document) => {
+                    console.log(document);
                     if (error) {
                         reject(error);
                     }
