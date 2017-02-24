@@ -18,6 +18,9 @@ module.exports = function (mongoose) {
             type: Array,
             "default": []
         },
+        details: {
+            type: String
+        },
         dateModified: {
             type: Date,
             "default": Date.Now
