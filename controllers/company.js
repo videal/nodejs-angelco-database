@@ -8,7 +8,7 @@ module.exports = mongoose => {
                     name: model.name,
                     jobs: model.jobs,
                     site: model.site,
-                    details: model.derails,
+                    details: model.details,
                     founders: model.founders,
                     dateModified: Date.now()
                 });
