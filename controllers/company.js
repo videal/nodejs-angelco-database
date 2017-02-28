@@ -9,7 +9,7 @@ module.exports = mongoose => {
                     jobs: model.jobs,
                     site: model.site,
                     details: model.details,
-                    links: mode.links,
+                    links: model.links,
                     founders: model.founders,
                     dateModified: Date.now()
                 });
