@@ -4,7 +4,7 @@ const company = require('./controllers/company.js')(mongoose);
 const downloadTask = require('./controllers/downloadTask.js')(mongoose);
 const taskCompany = require('./controllers/taskCompany.js')(mongoose);
 mongoose.Promise = global.Promise;
-mongoose.connect(`${configurations.connectionString}`);
+mongoose.connect(`${configurations.connectionString}`, { server: { reconnectTries: Number.MAX_VALUE } });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error:'));
