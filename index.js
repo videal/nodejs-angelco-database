@@ -3,6 +3,7 @@ const configurations = require('./configurations.js');
 const company = require('./controllers/company.js')(mongoose);
 const downloadTask = require('./controllers/downloadTask.js')(mongoose);
 const taskCompany = require('./controllers/taskCompany.js')(mongoose);
+const person = require('./controllers/person.js')(mongoose);
 
 module.exports = (connectionString) => {
   mongoose.Promise = global.Promise;
@@ -14,6 +15,7 @@ module.exports = (connectionString) => {
   return {
     company,
     downloadTask,
-    taskCompany
+    taskCompany,
+    person
   };
 }
