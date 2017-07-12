@@ -1,5 +1,5 @@
 module.exports = mongoose => {
-    var personSchema = require('../models/perons')(mongoose);
+    var personSchema = require('../models/person')(mongoose);
     return {
         Save: model => { 
             return new Promise((resolve, reject) => {

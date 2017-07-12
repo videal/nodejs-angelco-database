@@ -13,7 +13,7 @@ module.exports = function (mongoose) {
             type: String
         },
         position: {
-            type: string
+            type: String
         },
         emails: {
             type: Array,
