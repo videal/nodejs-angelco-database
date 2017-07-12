@@ -14,9 +14,16 @@ module.exports = function (mongoose) {
             type: Array,
             "default": []
         },
+        links: {
+            type: Array,
+            "default": []
+        },
         founders: {
             type: Array,
             "default": []
+        },
+        details: {
+            type: String
         },
         dateModified: {
             type: Date,
